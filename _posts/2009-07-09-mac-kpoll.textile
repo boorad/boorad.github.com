@@ -1,0 +1,22 @@
+---
+layout: post
+title: Erlang KPoll on the Mac
+---
+
+h1. {{ page.title }}
+
+p(meta). 9 Jul 2009 - Atlanta
+
+Joel Reymont writes in Facebook status:
+
+<pre>
+Using Erlang on Mac OSX with kernel poll enabled (+K true)?
+Can't go past 1024 fds?
+OTP won't fix, so edit FD_SETSIZE in /usr/include/sys/select.h
+
+More precisely,
+change __DARWIN_FD_SETSIZE in /usr/include/sys/_structs.h
+and recompile Erlang with --enable-kernel-poll among other things.
+</pre>
+
+Just wanted to save this somewhere, and try out the quote blocks too :)
