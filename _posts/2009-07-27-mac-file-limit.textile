@@ -1,0 +1,29 @@
+---
+layout: post
+title: Mac File Limit stuffs
+---
+
+h1. {{ page.title }}
+
+p(meta). 27 Jul 2009 - en route ATL -> BOS
+
+Like everyone else who does moderately sophisticated server development, and especially the ones using Erlang, I hit the file descriptor limit for Mac OS X.  I was hackng on "Dynomite":http://wiki.github.com/cliffmoon/dynomite, testing the Membership2 branches' bootstrap module, which moves files from one node to another during a join event.  Erlang runs everything as lightweight threads, and if sockets are involved, they're using file descriptors from the OS.  The default on my MacBook was insanity-low, at 256.  The solution is usually to:
+
+<pre>
+% ulimit -n 8192
+</pre>
+
+or some number of your choosing, like 1024 or so.  Fine, did that.  But my open shells still had the old limit, and in addition, I wanted to make the change permanent.  So, reading "here":http://www.nabble.com/max-fds-for-epoll-incorrectly-reduced-to-FD_SETSIZE-td22139560.html, "here":http://metajack.im/2008/09/23/file-descriptors-are-yummy-or-common-pitfalls-of-ejabberd/, and "here":http://www.macosxhints.com/article.php?story=200311151254441, I did the following:
+
+<pre>
+/etc/sysctl.conf:
+
+kern.maxfiles=65536
+kern.maxfilesperproc=30000
+
+/etc/launchd.conf
+
+limit maxfiles 8192 unlimited
+</pre>
+
+My gut feel is that the launchd.conf change was more impactful, but things are working now, and I'm moving on.  Hope this was useful to someone.
