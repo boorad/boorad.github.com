@@ -13,7 +13,7 @@ Like everyone else who does moderately sophisticated server development, and esp
 % ulimit -n 1024
 </pre>
 
-or some number of your choosing, like 512 or so.  Fine, did that.  But my open shells still had the old limit, and in addition, I wanted to make the change permanent.  So, reading "here":http://serverfault.com/questions/15564/where-are-the-default-ulimits-specified-on-os-x-10-5"here":http://www.nabble.com/max-fds-for-epoll-incorrectly-reduced-to-FD_SETSIZE-td22139560.html, "here":http://metajack.im/2008/09/23/file-descriptors-are-yummy-or-common-pitfalls-of-ejabberd/, and "here":http://www.macosxhints.com/article.php?story=200311151254441, I did the following (from the first article):
+or some number of your choosing, like 512 or so.  Fine, did that.  But my open shells still had the old limit, and in addition, I wanted to make the change permanent.  So, reading "here":http://serverfault.com/questions/15564/where-are-the-default-ulimits-specified-on-os-x-10-5, "here":http://www.nabble.com/max-fds-for-epoll-incorrectly-reduced-to-FD_SETSIZE-td22139560.html, "here":http://metajack.im/2008/09/23/file-descriptors-are-yummy-or-common-pitfalls-of-ejabberd/, and "here":http://www.macosxhints.com/article.php?story=200311151254441, I did the following (from the first article):
 
 <pre>
 /etc/launchd.conf
