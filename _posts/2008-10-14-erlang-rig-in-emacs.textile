@@ -1,0 +1,45 @@
+---
+layout: post
+title: Erlang rig in Emacs
+---
+
+h1. {{ page.title }}
+
+p(meta). 14 Oct 2008 - Atlanta
+
+So I finally got a bit of time to get back to Erlang, and caught up on Kevin Smith's screencasts.  Watching him work with flymake enabled reminded me that when I set up his emacs/erlang rig earlier, I never got flymake to work.  Well, I finally did, so thought I'd share my changes.
+
+Looking at 'git diff' I see I changed erlang_mode_config.el with my paths to Erlang stuffies:
+
+<pre>
+-(add-to-list 'load-path "/opt/lib/erlang/lib/tools-2.6.1/emacs")
++(add-to-list 'load-path "/opt/local/lib/erlang/lib/tools-2.6.1/emacs")
+ (require 'erlang-start)
+ (setq erlang-indent-level 2)
+-(add-to-list 'exec-path "/opt/bin")
+-(setq erlang-root-dir "/opt")
++(add-to-list 'exec-path "/opt/local/lib/erlang/bin")
++(setq erlang-root-dir "/opt/local/lib/erlang")
+</pre>
+
+Now, on to flymake_config.el, where I had another path change b/c I didn't put things in exactly the same place on my machine.
+
+<pre>
+-    (list "~/emacs/flymake/bin/eflymake" (list local-file))))
++    (list "~/dev/erlang/kevsmith/emacs/flymake/bin/eflymake" (list local-file))))
+</pre>
+
+Then, to recompile the .elc files, I ran this:
+
+<pre>
+emacs -q --no-site-file -batch -eval "(add-to-list 'load-path \".\")" -f batch-byte-compile *.el
+</pre>
+
+The same path changes were required in eflymake script, on the top line.
+
+<pre>
+-#!/opt/bin/escript
++#!/opt/local/lib/erlang/bin/escript
+</pre>
+
+Of course, the thing to do would be to modify these files to have one place for these settings to reside, and be more easily customizable for all.  But since I have things working, I want to get back to coding.  I hope to feel like before this was like 'coding in the dark.'  Off to code...

@@ -1,0 +1,16 @@
+---
+layout: post
+title: Erlounge Atlanta this week - now with Startup Drinks
+---
+
+h1. {{ page.title }}
+
+p(meta). 23 Apr 2009 - Atlanta
+
+As I mentioned in "Twitter":http://twitter.com/boorad/status/1307521896, and on "Erlang-Questions":http://groups.google.com/group/erlang-programming/browse_thread/thread/e0945469e0c6ae9e, we are getting together for Erlounge Atlanta on Wednesday, March 25, 2009.
+
+The site of the debacle is "Manuel's Tavern":http://manuelstavern.com/location.html.  7pm is kickoff.  I might be a bit late, so please start without me.  Order, drink, talk... wash, rinse, repeat.
+
+I've also learned today that an impromptu "Startup Drinks":http://atlanta.startupdrinks.com/ will crash our happy party.  The more the merrier.
+
+See you there.

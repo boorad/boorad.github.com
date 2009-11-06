@@ -1,0 +1,14 @@
+---
+layout: post
+title: Emacs setup posted to github
+---
+
+h1. {{ page.title }}
+
+p(meta). 31 Jan 2009 - Atlanta
+
+For those of you interested in my Emacs setup for Erlang development (let's face it, who wouldn't be interested in that?), you can find it here:
+
+"http://github.com/boorad/emacs/tree/master":http://github.com/boorad/emacs/tree/master
+
+Enyoy.

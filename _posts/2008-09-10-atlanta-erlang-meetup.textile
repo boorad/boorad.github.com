@@ -1,0 +1,18 @@
+---
+layout: post
+title: Atlanta Erlang Meetup
+---
+
+h1. {{ page.title }}
+
+p(meta). 10 Sep 2008 - Atlanta
+
+The "Metro Atlanta Erlang Users Group":http://groups.google.com/group/maeug, some single digits strong, will meet for the first time on September 20, 2008 at the "Brick Store Pub":http://local.google.com/maps?f=q&hl=en&geocode=&q=brick+store+pub,+decatur,+ga&ie=UTF8&z=14&iwloc=A in Decatur, GA.  For now, we are planning on meeting at 7pm.
+
+The Brick Store has a fairly amazing beer selection, and they're light on the TV's so we can hopefully avoid the rabid Tech and Dawg football fans.  Let's sit upstairs if possible.
+
+Please throw out suggestions for what to talk about in the comments, or we can just get together and meet/drink.  I can talk about a project I've got cooking, and my trials with backends, including CouchDB vs. Mnesia.  "Kevin Smith":http://weblog.hypotheticalabs.com/ says he will be there, so we can possibly guide his pragpodcast direction :)
+
+Wifi is a bit iffy.  Decatur is blanketed, but I'm not sure if it's free.  I believe you need to be a resident.  So, that means I'll be calling on my friend who lives over there.  Happily, he's at least heard of Erlang.
+
+Oh, and in addition to Erlang, I try to indoctrinate as many as I run into about the hotness of the "D Programming Language":http://digitalmars.com/d.  You have been warned.

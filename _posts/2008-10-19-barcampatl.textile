@@ -1,0 +1,14 @@
+---
+layout: post
+title: BarCampAtlanta
+---
+
+h1. {{ page.title }}
+
+p(meta). 19 Oct 2008 - Atlanta
+
+I attended Bar Camp Atlanta this weekend.  The event was a blast, but unfortunately I was only able to attend Friday nite.  I missed the distributed version control talk, and got my noodle cooked on "Genetic Algorithms in Javascript."  I also missed coffee w/ @ivey and @sanjay's Pipes talk.  :\
+
+I gave a talk on Erlang and why you should use it.  My over/under for attendees was four, but I packed in about 20 people standing room only...  not too bad.  "My slides can be found here":http://www.slideshare.net/boorad/why-erlang-bar-camp-atlanta-2008-presentation/.
+
+Poker was great, including the whiskey... although I could have done without a couple of the beats put on me.  My playing partners seemed so nice.  But put chips in front of them, and cards, and whiskey... they changed real fast.   I'll be ready next time.

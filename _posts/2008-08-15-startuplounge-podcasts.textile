@@ -1,0 +1,18 @@
+---
+layout: post
+title: Startup Lounge podcasts
+---
+
+h1. {{ page.title }}
+
+p(meta). 15 Aug 2008 - Atlanta
+
+I really dislike exercising.  Recently, I've found myself back in the gym, trying to shed my 'programmer physique' as noted in the "video of my Startup Riot talk":http://omnisio.com/startupriot/startup-riot-2008-quantumxml.  So I hop on an elliptical, treadmill, stationary bike, etc. and get going.  There are TV's if I want to watch the 'fair and unbiased' reporting of Fox News, or watch Emeril bulge out of his apron, talking about cooking something healthy.  But not much really takes the pain away from the mind-numbing, boring task at hand.
+
+A few weeks ago, I caught my first "startuplounge.com":http://startuplounge.com/ podcast, their #27, with Mitch Free of mfg.com.  "Scott Burkett":http://scottburkett.com/ and "Michael Blake":http://unblakeable.com/ have managed to create something more painful than exercising, so that while listening, my mind is distracted from the physical exertion, profuse sweating, heavy breathing, and shredding of my knees.  Well done, gents.
+
+Kidding aside, this is an excellent resource for entrepreneurs.  I have known about the podcasts for a while, but just now started listening, because "Quantum XML":http://www.quantumxml.com/ is now seeking VC funding.  For those of you who don't know, Quantum is bringing the fastest XML parser on the planet to market.
+
+I was able to knock off Episode #1 this morning on the treadmill.  They have a nice bit of comedy mixed in with sage advice.  I mean, Sanford and Son is worked in, along with anal glaucoma...  really, just listen.
+
+I'm psyched to have 24 more to go (one is mysteriously missing, possibly under FCC investigation?) so that should be about 6 weeks or so of trips to the gym.  And I'm really looking forward to #28, due any day, with Sig Moseley.  So, keep up the good work, guys.  And keep them coming.  Because if you don't crank out 3-4 per week starting in the fall when I need them, I'll be a fat slob again, and you'll have that on your consciences.
