@@ -1,0 +1,25 @@
+---
+layout: post
+title: Buttons and Dials and Knobs, Oh My
+---
+
+h1. {{ page.title }}
+
+p(meta). 19 Dec 2009 - ATL
+
+One of the big differences between stand-alone "CouchDB":http://couchdb.apache.org and "Cloudant's":http://cloudant.com hosted version is the inclusion of a clustering layer.  This layer provides Cloudant's hosted service with a few very desirable capabilities, such as high availability for reads and writes, consistency & durability, and horizontal scalability.  It is based upon "Amazon's Dynamo Paper":http://www.allthingsdistributed.com/2007/10/amazons_dynamo.html and Cliff Moon's "Dynomite":http://wiki.github.com/cliffmoon/dynomite/ project.
+
+There are a few configuration settings you should know about Dynamo-inspired systems, namely the quorum constants.  There are four constants that define a cluster's behavior:  Q, N, R, and W.  In this post, we want to concentrate on R & W, so quickly:  Q dictates the total number of partitions or shards in the system, across all nodes/servers/machines.  N is the configuration setting that controls how many times within the cluster a given document will be stored.  N=4 means four copies are stored on four different nodes.
+
+R is the first of the quorum constants, and controls consistency of replies for data retrieval.  When a document is requested by its doc_id from the data store, N requests will be sent out internally to the partner nodes housing the partition that is responsible for the doc_id.  Then, when the node handling the request gets R of the N results back, it reconciles the results and returns the best version of the document to the client.  If you set R to 1, the first result of the N requests wins, and is returned at most likely a very low latency (fastest of the N requests).  If you want more consistency, and want to have more nodes agree on the document that should be returned, R should be set closer to N.  This will return a more consistent value of the document, but be as fast as the slowest of the R requests to the nodes.
+
+W is the other quorum constant, and controls write durability.  When a document is presented to the data store for writing, N writes are sent out.  These write requests go to the partner nodes that are responsible for the partition of the new document's doc_id.  W controls the number of write responses the node handling the request needs to receive, before returning to the client that a successful write was made.  If W=2, and N=4, all four writes will be attempted, but after two successful writes, the data store returns a success message to the client.  The other two writes will still happen, eventually.
+
+h2. The Good Part
+
+Until now, Q, N, R, and W were set up in a cluster, based upon customer needs of consistency and durability, in the general case, and were not user-configurable.  However, as of Cloudant's 0.9.0 release, R and W may be set on a per-request basis.  Just add <code>?r=2</code> on GETs or possibly <code>&w=3</code> on PUTs and control your own consistency and durability.
+
+<code>curl -X GET http://user:pass@user.cloudant.com:5984/dbname/doc_id?r=2</code>
+<code>curl -X PUT http://user:pass@user.cloudant.com:5984/dbname/doc_id?w=1 -d {\"test\" : \"test\"}</code>
+
+Be sure to let us know how you're using this feature.  Whether it is more throughput for high numbers of writes (low W), or slightly delayed, but more consistent reads (high R), or any other combination, we'd like to hear from you.

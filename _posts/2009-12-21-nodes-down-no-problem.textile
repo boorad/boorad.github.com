@@ -1,0 +1,17 @@
+---
+layout: post
+title: Nodes Down?  No Problem.
+---
+
+h1. {{ page.title }}
+
+p(meta). 21 Dec 2009 - ATL
+
+
+In the "Dynamo paper":http://www.allthingsdistributed.com/2007/10/amazons_dynamo.html, the concept of hinted handoff describes a mechanism for dealing with writes that fail because the target node is unavailable.  Other nodes often store the data temporarily, and when the downed node returns to the cluster, it begins to receive the data it should have received during the original writes.
+
+In any deployment of even moderate size, resource failure will happen, and Dynamo-inspired systems were designed with this in mind.   "Cloudant":http://cloudant.com did not escape this reality, and we have what we believe is an elegant solution.  Leveraging the replication capabilities of "CouchDB":http://couchdb.apache.org, on which Adam Kocoloski has worked diligently to improve, we were able to achieve a highly reliable and fast hinted handoff mechanism.
+
+Each partition in a Cloudant cluster is housed on N partner nodes.  These 'shards' are individual CouchDB storage files, and should contain the exact same documents on all nodes responsible for that partition.  When one of the nodes is down, writes fail locally, but go to the other partner shards, as expected.  Our solution enables internal partner node replication.  That is, each shard establishes continuous bi-directional replication with the same shards on the other partner nodes.  When the downed node returns to the cluster, replication to fill in the missing data begins instantly.  Our solution also has the ability to throttle this 'catch-up' replication so we do not flood the newly returned node.  This throttling allows us to minimize the impact upon the current operations of the node or entire cluster, if necessary.
+
+So, is this true hinted handoff?  Maybe not, according the Dynamo purists out there.  But there are buckets on other nodes that are temporarily holding data for a node while it takes a brief vacation.  Also, those buckets are used for valid reads, even if they don't count toward the read quorum, R.  It's pretty close to the full spirit of hinted handoff, it works for all but the most strenuous of outages, and we're happy to offer it with our 0.9.0 release.
