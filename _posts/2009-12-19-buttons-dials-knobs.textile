@@ -19,7 +19,7 @@ h2. The Good Part
 
 Until now, Q, N, R, and W were set up in a cluster, based upon customer needs of consistency and durability, in the general case, and were not user-configurable.  However, as of Cloudant's 0.9.0 release, R and W may be set on a per-request basis.  Just add <code>?r=2</code> on GETs or possibly <code>&w=3</code> on PUTs and control your own consistency and durability.
 
-<code>curl -X GET http://user:pass@user.cloudant.com:5984/dbname/doc_id?r=2</code>
-<code>curl -X PUT http://user:pass@user.cloudant.com:5984/dbname/doc_id?w=1 -d {\"test\" : \"test\"}</code>
+<code>curl -X GET https://user:pass@user.cloudant.com:5984/dbname/doc_id?r=2</code>
+<code>curl -X PUT https://user:pass@user.cloudant.com:5984/dbname/doc_id?w=1 -d {\"test\" : \"test\"}</code>
 
 Be sure to let us know how you're using this feature.  Whether it is more throughput for high numbers of writes (low W), or slightly delayed, but more consistent reads (high R), or any other combination, we'd like to hear from you.
