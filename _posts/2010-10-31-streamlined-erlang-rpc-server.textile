@@ -1,0 +1,21 @@
+---
+layout: post
+title: Streamlined Erlang RPC Server
+---
+
+h1. {{ page.title }}
+
+p(meta). 31 Oct 2010 - ATL
+
+
+While working on cloudant-dbcore, we noticed varying performance characteristics of code that used distributed Erlang to spawn processes on remote nodes. Some of our code was pretty snappy, while profiling revealed that others were orders of magnitude slower while essentially attempting the same basic function. So we took a look and found some optimizations that led to impressive speedups for remote operations and a new open-source project we'd like to share.
+
+Upon closer examination, part of the problem was the use of rpc:call/4 or /5.  'rex' is the RPC server that ships with Erlang/OTP.  When looking at its source code, we found that rpc:call does a "spawn_monitor for another middleman process":http://github.com/erlang/otp/blob/dev/lib/kernel/src/rpc.erl#L309 which makes a "gen_server:call to {rex, Node}":http://github.com/erlang/otp/blob/dev/lib/kernel/src/rpc.erl#L314, then receives the Result, and "exit()s":http://github.com/erlang/otp/blob/dev/lib/kernel/src/rpc.erl#L315 with it.  On the remote node, the rex server "spawn_monitors a local process to do the MFA":http://github.com/erlang/otp/blob/dev/lib/kernel/src/rpc.erl#L197 and report the result to rex.
+
+So, why did we write our own RPC server, 'rexi'?  The advantage of not using rex as the RPC server is that we get to customize the flow more.  For example, we can send async messages starting workers without spawning a local process, but we still get notifications if those processes crash.  Also, minimizing the number of processes involved helped us with CPU utilization, since we are not copying data from process to process all over the place.
+
+Here's an example of how to use rexi.
+
+<script src="http://gist.github.com/533025.js"></script>
+
+Check out the "rexi repo":http://github.com/cloudant/rexi on Github and take it for a spin.  Let us know what you think.
